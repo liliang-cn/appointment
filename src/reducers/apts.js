@@ -4,16 +4,14 @@ let id = 0;
 
 const apts = (state=[], action) => {
     const handleDelete = (arr, id) => {
-        let deleteIndex = null;
-        for(let i=0;i<arr.length;i++) {
+        for(let i=0; i<arr.length; i++) {
             if (arr[i].id === id) {
-                deleteIndex = i;
+                return [
+                    ...arr.slice(0, i),
+                    ...arr.slice(i+1)
+                ]
             }
         }
-        return [
-            ...arr.slice(0, deleteIndex),
-            ...arr.slice(deleteIndex+1)
-        ]
     };
 
     switch (action.type) {
