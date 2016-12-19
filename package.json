@@ -2,12 +2,15 @@
   "name": "react_redux_appointment",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://liliang-cn.github.io/react_redux_appointment",
   "devDependencies": {
     "react-scripts": "0.8.4"
   },
   "dependencies": {
     "axios": "^0.15.3",
+    "gh-pages": "^0.12.0",
     "material-ui": "^0.16.5",
+    "moment": "^2.17.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-redux": "^5.0.1",
@@ -17,6 +20,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "yarn build && gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   }
