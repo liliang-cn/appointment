@@ -48,8 +48,7 @@ const AddForm = ({handleAdd}) => {
                     />
                     <Divider />
                     <DatePicker 
-                        hintText="Date" 
-                        mode="landscape" 
+                        hintText="Date"  
                         underlineShow={false}
                         onChange={handleDateChange}
                     />
