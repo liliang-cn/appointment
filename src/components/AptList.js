@@ -2,12 +2,13 @@ import React from 'react';
 import {List, ListItem} from 'material-ui/List';
 import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
+import moment from 'moment';
 
 const buttonStyle = {
   margin: 12,
 };
 
-const AptList = ({apts}) => {
+const AptList = ({apts, handleDelete}) => {
     return (
         <div>
             <h2>Appointments List</h2>
@@ -16,8 +17,8 @@ const AptList = ({apts}) => {
                     <ListItem key={i}>
                         <Card style={{textAlign: 'left'}}>
                             <CardHeader
-                                title={apt.date}
-                                subtitle={apt.time}
+                                title={moment(apt.date).format("YYYY-MM-DD")}
+                                subtitle={moment(apt.time).format("HH:mm")}
                                 actAsExpander={true}
                                 showExpandableButton={true}
                             />
@@ -25,8 +26,7 @@ const AptList = ({apts}) => {
                             <CardText expandable={true}>
                                 {apt.note}
                                 <CardActions>
-                                    <RaisedButton style={buttonStyle} label="Done" primary={true} />
-                                    <RaisedButton style={buttonStyle} label="Delete" secondary={true} />
+                                    <RaisedButton style={buttonStyle} label="Delete" secondary={true} onClick={() => handleDelete(apt.id)}/>
                                 </CardActions>
                             </CardText>
                         </Card>

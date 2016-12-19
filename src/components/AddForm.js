@@ -18,7 +18,20 @@ const buttonStyle = {
     margin: 12
 };
 
-const AddForm = () => {
+const AddForm = ({handleAdd}) => {
+    let guestName, date, time, note;
+    const onAdd = () => {
+        handleAdd({guestName, date, time, note})
+    };
+
+    const handleDateChange = (event, aptDate) => {
+        date = aptDate;
+    };
+
+    const handleTimeChange = (event, aptTime) => {
+        time = aptTime;
+    };
+
     return (
         <Paper style={paperStyle} zDepth={2}>
             <Card style={{textAlign: 'left'}}>
@@ -28,29 +41,35 @@ const AddForm = () => {
                     showExpandableButton={true}
                 />
                 <CardText expandable={true}>
-                    <form>
-                        <TextField
-                            floatingLabelText="Guest's Name"
-                            underlineShow={false}
-                        />
-                        <Divider />
-                        <DatePicker hintText="Date" mode="landscape" underlineShow={false}/>
-                        <Divider />
-                        <TimePicker
-                            hintText="Time"
-                            okLabel="OK"
-                            cancelLabel="Cancel"
-                            underlineShow={false}
-                        />
-                        <Divider />
-                        <TextField
-                            floatingLabelText="Note"
-                            underlineShow={false}
-                        />
-                        <Divider />
-                        <RaisedButton label="Add" primary={true} style={buttonStyle} />
-                        <RaisedButton label="Cancel" secondary={true} style={buttonStyle} />
-                    </form>
+                    <TextField
+                        floatingLabelText="Guest's Name"
+                        underlineShow={false}
+                        onChange={e => guestName = e.target.value.trim()}
+                    />
+                    <Divider />
+                    <DatePicker 
+                        hintText="Date" 
+                        mode="landscape" 
+                        underlineShow={false}
+                        onChange={handleDateChange}
+                    />
+                    <Divider />
+                    <TimePicker
+                        hintText="Time"
+                        okLabel="OK"
+                        cancelLabel="Cancel"
+                        underlineShow={false}
+                        onChange={handleTimeChange}
+                    />
+                    <Divider />
+                    <TextField
+                        floatingLabelText="Note"
+                        underlineShow={false}
+                        onChange={e => note = e.target.value.trim()}
+                    />
+                    <Divider />
+                    <RaisedButton label="Add" primary={true} style={buttonStyle} onClick={onAdd}/>
+                    <RaisedButton label="Cancel" secondary={true} style={buttonStyle} />
                 </CardText>
             </Card>
         </Paper>

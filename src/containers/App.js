@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin';
 
@@ -6,9 +8,11 @@ injectTapEventPlugin();
 import AppBar from 'material-ui/AppBar';
 import Paper from 'material-ui/Paper';
 
-import AddForm from './components/AddForm';
-import Search from './components/Search';
-import AptList from './components/AptList';
+import AddForm from '../components/AddForm';
+import Search from '../components/Search';
+import AptList from '../components/AptList';
+
+import { addApt, deleteApt } from '../actions';
 
 const paperStyle = {
   minHeight: 600,
@@ -18,19 +22,6 @@ const paperStyle = {
 };
 
 class App extends Component {
-  constructor() {
-    super()
-    this.state = {
-      apts: [
-        {
-          guestName: 'John Doe',
-          date: '2016-12-19',
-          time: '8:48 pm',
-          note: 'Somthing important'
-        }
-      ]
-    }
-  }
   render() {
     return (
       <MuiThemeProvider>
@@ -40,9 +31,9 @@ class App extends Component {
             showMenuIconButton={false}
           />
           <Paper style={paperStyle} zDepth={5}>
-            <AddForm />
+            <AddForm handleAdd={newApt => this.props.dispatch(addApt(newApt))} />
             <Search />
-            <AptList apts={this.state.apts} />
+            <AptList apts={this.props.apts} handleDelete={id => this.props.dispatch(deleteApt(id))} />
           </Paper>
         </div>
       </MuiThemeProvider>
@@ -50,4 +41,8 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  apts: state.apts
+});
+
+export default connect(mapStateToProps, null)(App);
