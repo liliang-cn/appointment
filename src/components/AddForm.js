@@ -7,6 +7,10 @@ import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 import Paper from 'material-ui/Paper';
 import Divider from 'material-ui/Divider';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+
+import moment from 'moment';
 
 const paperStyle = {
   width: 340,
@@ -18,26 +22,38 @@ const buttonStyle = {
     margin: 12
 };
 
-const AddForm = ({handleAdd}) => {
+const AddForm = ({handleAdd, open, toggleDialog, formExpanded, toggleFormExpanded}) => {
     let guestName, date, time, note;
+
     const onAdd = () => {
-        handleAdd({guestName, date, time, note})
+        guestName && date && time && note
+        ?
+        handleAdd({guestName, date, time, note}) && toggleFormExpanded()
+        :
+        toggleDialog()
     };
 
     const handleDateChange = (event, aptDate) => {
-        date = aptDate;
+        date = moment(aptDate).format('YYYY-MM-DD')
     };
 
     const handleTimeChange = (event, aptTime) => {
-        time = aptTime;
+        time = moment(aptTime).format('hh:mm')
     };
+
+    const actions = [
+        <FlatButton
+            label="OK"
+            primary={true}
+            onTouchTap={toggleDialog}
+        />
+    ];
 
     return (
         <Paper style={paperStyle} zDepth={2}>
-            <Card style={{textAlign: 'left'}}>
+            <Card style={{textAlign: 'left'}} expanded={formExpanded} onExpandChange={toggleFormExpanded}>
                 <CardHeader
                     title="New Appointment"
-                    actAsExpander={true}
                     showExpandableButton={true}
                 />
                 <CardText expandable={true}>
@@ -68,8 +84,17 @@ const AddForm = ({handleAdd}) => {
                     />
                     <Divider />
                     <RaisedButton label="Add" primary={true} style={buttonStyle} onClick={onAdd}/>
-                    <RaisedButton label="Cancel" secondary={true} style={buttonStyle} />
+                    <RaisedButton label="Cancel" secondary={true} style={buttonStyle} onClick={toggleFormExpanded}/>
                 </CardText>
+                <Dialog
+                    title="Caution"
+                    actions={actions}
+                    modal={false}
+                    open={open}
+                    onRequestClose={toggleDialog}
+                >
+                    All fileds are required!
+                </Dialog>
             </Card>
         </Paper>
     );
