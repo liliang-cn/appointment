@@ -2,7 +2,7 @@
 
 这个小应用使用[Create React App](https://github.com/facebookincubator/create-react-app)创建,
 演示地址:[https://liliang-cn.github.io/appointment](https://liliang-cn.github.io/appointment)，
-repo地址：[https://github.com/liliang-cn/react_redux_appointment](https://github.com/liliang-cn/react_redux_appointment)。
+repo地址：[https://github.com/liliang-cn/appointment](https://github.com/liliang-cn/appointment)。
 
 这是之前的[React_appointment](https://github.com/liliang-cn/react_appointment)的Redux版，
 [之前的演示](https://quiet-falls-10277.herokuapp.com/)，
