@@ -1,8 +1,8 @@
 {
-  "name": "react_redux_appointment",
+  "name": "appointment",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://liliang-cn.github.io/react_redux_appointment",
+  "homepage": "https://liliang-cn.github.io/appointment",
   "devDependencies": {
     "react-scripts": "0.8.4"
   },
