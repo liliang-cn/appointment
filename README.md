@@ -1,7 +1,7 @@
 # React-Redux-Appointment
 
 这个小应用使用[Create React App](https://github.com/facebookincubator/create-react-app)创建,
-演示地址:[https://liliang-cn.github.io/react_redux_appointment](https://liliang-cn.github.io/react_redux_appointment)，
+演示地址:[https://liliang-cn.github.io/appointment](https://liliang-cn.github.io/appointment)，
 repo地址：[https://github.com/liliang-cn/react_redux_appointment](https://github.com/liliang-cn/react_redux_appointment)。
 
 这是之前的[React_appointment](https://github.com/liliang-cn/react_appointment)的Redux版，
